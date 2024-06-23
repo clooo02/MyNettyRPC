@@ -13,7 +13,6 @@ public class PingHandler extends ChannelDuplexHandler {
         IdleStateEvent event = (IdleStateEvent) evt;
         if (event.state() == IdleState.WRITER_IDLE) {
             // 当长时间没有操作时，向服务端发送一个心跳数据包表明还在正常连接
-//            System.out.println("发送一个心跳数据包");
             ctx.writeAndFlush(new PingMessage());
         }
         super.userEventTriggered(ctx, evt);
